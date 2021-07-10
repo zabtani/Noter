@@ -2,12 +2,22 @@ import React, { useEffect, useReducer } from 'react';
 import TasksContext from './tasks-context';
 import { creationDate } from './tasks-helper';
 const savedTasks = localStorage.getItem('tasks');
+const savedLabels = localStorage.getItem('labels');
 const defaultTasksState = {
   tasks: savedTasks ? JSON.parse(savedTasks) : [],
+  labels: savedLabels
+    ? JSON.parse(savedLabels)
+    : [{ id: 'def', name: 'General', color: '#0000003b' }],
 };
 function tasksReducer(state, action) {
   let updatedTasks = [...state.tasks];
   switch (action.type) {
+    case 'ADDLABEL':
+      const label = action.value;
+      return {
+        ...state,
+        labels: [...state.labels, label],
+      };
     case 'ADD':
       const task = action.value;
       return {
@@ -47,10 +57,14 @@ export const TasksProvider = (props) => {
     defaultTasksState
   );
   const { tasks } = tasksState;
+  const { labels } = tasksState;
   useEffect(() => {
     localStorage.setItem('tasks', JSON.stringify(tasks));
-  }, [tasks]);
-
+    localStorage.setItem('labels', JSON.stringify(labels));
+  }, [tasks, labels]);
+  const addLabelHandler = (label) => {
+    dispatchTasksAction({ type: 'ADDLABEL', value: label });
+  };
   const addHandler = (task) => {
     dispatchTasksAction({ type: 'ADD', value: task });
   };
@@ -62,7 +76,9 @@ export const TasksProvider = (props) => {
   };
 
   const tasksContext = {
+    labels: labels,
     tasks: tasks,
+    addLabel: addLabelHandler,
     add: addHandler,
     move: moveHandler,
     remove: removeHandler,

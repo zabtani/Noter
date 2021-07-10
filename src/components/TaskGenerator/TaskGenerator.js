@@ -8,7 +8,6 @@ import classes from './TaskGenerator.module.css';
 import Modal from '../UI/Modal';
 
 const defaultGenState = {
-  labels: [{ id: 'def', name: 'General', color: '#0000003b' }],
   mainFormView: true,
   currentInputsData: { name: '', description: '' },
   lastCreatedLabel: { id: 'def', name: 'General', color: '#0000003b' },
@@ -28,14 +27,7 @@ const genReducer = (state, action) => {
         mainFormView: false,
         currentInputsData: action.value,
       };
-    case 'NEW_LABEL':
-      const newLabel = action.value;
-      const updatedLabels = [...state.labels, newLabel];
-      return {
-        ...state,
-        lastCreatedLabel: newLabel,
-        labels: updatedLabels,
-      };
+
     case 'FORM_ERROR':
       const error = action.value;
       return {
@@ -50,12 +42,13 @@ const genReducer = (state, action) => {
 const TaskGenerator = (props) => {
   const [genState, dispatchGenAction] = useReducer(genReducer, defaultGenState);
   const tasksCtx = useContext(TasksContext);
+  console.log(tasksCtx);
   const onAddNewTaskHandler = (task) => {
     tasksCtx.add({ ...task, id: randId() });
   };
   const onAddNewLabelHandler = (newLabel) => {
     const updatedNewLabel = { ...newLabel, id: randId() };
-    dispatchGenAction({ type: 'NEW_LABEL', value: updatedNewLabel });
+    tasksCtx.addLabel(updatedNewLabel);
   };
   const switchToTaskFormHandler = () => {
     dispatchGenAction({ type: 'SWITCH_TO_TASK_FORM' });
@@ -86,7 +79,7 @@ const TaskGenerator = (props) => {
           chosenLabel={genState.lastCreatedLabel}
           onAddNewTask={onAddNewTaskHandler}
           toggleView={switchToLabelFormHandler}
-          labels={genState.labels}
+          labels={tasksCtx.labels}
         />
       )}
       {!genState.mainFormView && (

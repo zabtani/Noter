@@ -1,0 +1,73 @@
+.task button {
+  background-color: transparent;
+  border: none;
+  padding: 0.3rem;
+  display: flex;
+}
+.task {
+  margin-top: 0.6rem;
+  border-radius: 0.5rem;
+  width: 100%;
+  overflow: hidden;
+}
+.topContainer {
+  display: flex;
+  justify-content: space-between;
+}
+.date {
+  margin: 0.2rem;
+  font-size: 0.6rem;
+}
+.title {
+  font-size: 1.1rem;
+  padding: 0.5rem;
+  margin: 0.1rem;
+  font-weight: bolder;
+}
+
+.task.completed h2,
+.task.completed .label,
+.task.completed .date,
+.task.completed p {
+  opacity: 0.4;
+}
+
+.buttonsContainer {
+  display: flex;
+  justify-content: space-between;
+}
+.buttonsContainer button {
+  font-size: 1rem;
+  font-weight: bolder;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  color: rgba(0, 0, 0, 0.548);
+}
+
+.buttonsContainer button:hover {
+  background-color: rgba(167, 167, 167, 0.274);
+  color: black;
+  font-weight: bolder;
+}
+p {
+  padding: 0.4rem;
+}
+
+.icon {
+  margin-right: 0.3rem;
+}
+.deleteButton:hover {
+  color: red;
+  font-weight: bolder;
+}
+.label {
+  font-size: 0.8rem;
+  padding: 0.2rem;
+  margin: 0.3rem;
+  width: fit-content;
+  border-radius: 5px;
+}
+p {
+  line-break: anywhere;
+}

@@ -1,0 +1,64 @@
+.card {
+  transition: width 0.7s;
+  font-size: 0.8rem;
+  width: 32%;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  background: linear-gradient(
+    rgba(235, 233, 255, 0.664),
+    rgba(240, 240, 240, 0.664)
+  );
+  border-radius: 0.7rem;
+  margin: 0.5rem;
+  height: auto;
+  overflow: hidden;
+}
+.card .header h2 {
+  color: aliceblue;
+  font-size: 1.3rem;
+  font-weight: normal;
+  margin: 0.5rem;
+}
+.card .header {
+  display: flex;
+  justify-content: space-between;
+  font-family: 'Open Sans Condensed', sans-serif, 'Ubuntu', 'Cantarell',
+    'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+
+  text-align: center;
+  background: #3f51b5;
+  width: 100%;
+}
+.card .header button {
+  border: none;
+  margin: 0.8%;
+  background-color: transparent;
+}
+.card .header .icon {
+  color: aliceblue;
+  border-radius: 5px;
+  padding: 8%;
+  margin: 1%;
+}
+.card .header .icon:hover {
+  background-color: rgba(168, 168, 168, 0.363);
+}
+
+.mainContent {
+  padding: 0.5rem;
+}
+
+@media (max-width: 768px) {
+  .card,
+  .expanded {
+    width: 90% !important;
+    align-self: center;
+  }
+
+  .card .header .icon {
+    display: none;
+  }
+  main {
+    flex-direction: column;
+    width: 100%;
+  }
+}

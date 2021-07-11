@@ -1,7 +1,7 @@
 import classes from './Task.module.css';
-import CheckIcon from './CheckIcon';
-import InfoIcon from './InfoIcon';
-import DeleteIcon from './DeleteIcon';
+import CheckIcon from '../../UI/Icons/CheckIcon';
+import InfoIcon from '../../UI/Icons/InfoIcon';
+import DeleteIcon from '../../UI/Icons/DeleteIcon';
 import { useContext, useState } from 'react';
 import TasksContext from '../../../store/tasks-context';
 import Modal from '../../UI/Modal';

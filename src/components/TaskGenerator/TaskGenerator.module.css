@@ -58,14 +58,8 @@ form p {
 }
 .option.chosen button {
   font-weight: bolder;
-  width: 80%;
+  width: 85%;
 }
 .option.chosen.default button {
-  margin-left: 12%;
-}
-
-@media (max-width: 768px) {
-  .delButton {
-    margin-left: 0.6rem;
-  }
+  margin-left: 8%;
 }

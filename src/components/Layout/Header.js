@@ -1,4 +1,4 @@
-import PencilIcon from './PencilSVG';
+import PencilIcon from '../UI/Icons/PencilSVG';
 import classes from '../Layout/Header.module.css';
 
 const Header = (props) => {

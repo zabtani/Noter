@@ -1,5 +1,5 @@
 import classes from './TaskGenerator.module.css';
-import LabelDeleteIcon from './LabelDeleteIcon';
+import LabelDeleteIcon from '../UI/Icons/LabelDeleteIcon';
 const OptionButton = (props) => {
   return (
     <li

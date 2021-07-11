@@ -46,10 +46,11 @@ form {
   margin-bottom: 13%;
   vertical-align: middle;
 }
-
-.option.chosen {
+.option.chosen.deleteOption {
   position: relative;
   right: 18px;
+}
+.option.chosen {
   width: 85%;
   display: flex;
 }

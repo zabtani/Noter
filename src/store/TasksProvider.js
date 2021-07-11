@@ -18,6 +18,15 @@ function tasksReducer(state, action) {
         ...state,
         labels: [...state.labels, label],
       };
+    case 'DELETELABEL':
+      const deletedLabelId = action.value;
+      const updatedLabels = state.labels.filter(
+        (label) => label.id !== deletedLabelId
+      );
+      return {
+        ...state,
+        labels: [...updatedLabels],
+      };
     case 'ADD':
       const task = action.value;
       return {
@@ -74,11 +83,15 @@ export const TasksProvider = (props) => {
   const removeHandler = (id) => {
     dispatchTasksAction({ type: 'REMOVE', value: id });
   };
+  const deleteLabelHandler = (id) => {
+    dispatchTasksAction({ type: 'DELETELABEL', value: id });
+  };
 
   const tasksContext = {
     labels: labels,
     tasks: tasks,
     addLabel: addLabelHandler,
+    deleteLabel: deleteLabelHandler,
     add: addHandler,
     move: moveHandler,
     remove: removeHandler,

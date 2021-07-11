@@ -4,8 +4,8 @@ import FormButton from './FormButton';
 import { useRef, useState } from 'react';
 import OptionButton from './OptionButton';
 
-const TaskForm = (props) => {
-  const [chosenColor, setChosenColor] = useState(props.labelColors[0]);
+const LabelForm = (props) => {
+  const [chosenColor, setChosenColor] = useState(props.labelColors[0].hex);
   const labelNameInput = useRef();
   const addNewLabelHandler = (event) => {
     event.preventDefault();
@@ -27,6 +27,7 @@ const TaskForm = (props) => {
     const isChosen = chosenColor === color.hex;
     return (
       <OptionButton
+        deleteOption={false}
         chosen={isChosen}
         key={color.hex.replace('#', '')}
         color={color.hex}
@@ -51,4 +52,4 @@ const TaskForm = (props) => {
   );
 };
 
-export default TaskForm;
+export default LabelForm;

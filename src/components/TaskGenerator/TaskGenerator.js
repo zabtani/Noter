@@ -70,6 +70,7 @@ const TaskGenerator = (props) => {
   const closeErrorModalHandler = () => {
     dispatchGenAction({ type: 'FORM_ERROR', value: false });
   };
+
   return (
     <Card className={classes.gen} title="New Note">
       {genState.formError && (

@@ -74,6 +74,7 @@ p {
 }
 @media (max-width: 768px) {
   .buttonsContainer button:focus {
+    color: rgba(0, 0, 0, 0.548);
     background-color: transparent;
   }
   .task {

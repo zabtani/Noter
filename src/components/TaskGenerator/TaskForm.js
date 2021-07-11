@@ -1,6 +1,7 @@
 import classes from './TaskGenerator.module.css';
 import Input from '../UI/Input';
-import { useRef, useState } from 'react';
+import TasksContext from '../../store/tasks-context';
+import { useRef, useState, useContext } from 'react';
 import OptionButton from './OptionButton';
 import FormButton from './FormButton';
 
@@ -8,6 +9,8 @@ const TaskForm = (props) => {
   const [chosenLabel, setChosenLabel] = useState(props.chosenLabel);
   const nameInput = useRef();
   const descriptionInput = useRef();
+  const tasksCtx = useContext(TasksContext);
+
   const addNewTaskHandler = (event) => {
     event.preventDefault();
     const name = nameInput.current.value;
@@ -34,10 +37,19 @@ const TaskForm = (props) => {
       description: descriptionInput.current.value,
     });
   };
+
+  const deleteLabelHandler = (labelId) => {
+    setChosenLabel(props.chosenLabel);
+    tasksCtx.deleteLabel(labelId);
+  };
+
   const labels = props.labels.map((label) => {
     const isChosen = label.id === chosenLabel.id ? true : false;
     return (
       <OptionButton
+        deleteOption={
+          label.id === 'def' ? false : deleteLabelHandler.bind(null, label.id)
+        }
         chosen={isChosen}
         key={label.id}
         title={label.name}

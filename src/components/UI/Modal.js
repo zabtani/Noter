@@ -14,10 +14,21 @@ const ModalOverlay = (props) => {
         variant="contained"
         color="primary"
         type="button"
-        onClick={props.onClick}
+        onClick={props.onClose}
       >
         {props.buttonText}
       </Button>
+
+      {props.onAction && (
+        <Button
+          variant="contained"
+          color="primary"
+          type="button"
+          onClick={props.onAction}
+        >
+          approve
+        </Button>
+      )}
     </div>
   );
 };
@@ -30,7 +41,11 @@ const Modal = (props) => {
         portalElement
       )}
       {ReactDOM.createPortal(
-        <ModalOverlay buttonText={props.buttonText} onClick={props.onClose}>
+        <ModalOverlay
+          buttonText={props.buttonText}
+          onClose={props.onClose}
+          onAction={props.onAction}
+        >
           {props.children}
         </ModalOverlay>,
         portalElement

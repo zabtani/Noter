@@ -4,7 +4,7 @@ const OptionButton = (props) => {
   return (
     <li
       className={`${classes.option} ${props.chosen && classes.chosen} ${
-        props.deleteOption && classes.deleteOption
+        !props.deleteOption && classes.default
       }`}
     >
       {props.deleteOption && props.chosen && (

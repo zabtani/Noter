@@ -15,7 +15,7 @@ const List = (props) => {
       title={props.title}
     >
       <div className={classes.tasksList}>
-        {tasks.length > 0 ? tasks : 'List is empty.'}
+        {tasks.length > 0 ? tasks : 'Nothing here yet...'}
       </div>
     </Card>
   );

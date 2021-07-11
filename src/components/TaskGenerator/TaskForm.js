@@ -61,6 +61,12 @@ const TaskForm = (props) => {
   return (
     <>
       <form autoComplete="off" onSubmit={addNewTaskHandler}>
+        <p>
+          Add name and description to the note,
+          <br />
+          then choose a label or create one.
+        </p>
+
         <Input
           label="Note name"
           id="name"

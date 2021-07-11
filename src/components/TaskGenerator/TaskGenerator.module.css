@@ -38,8 +38,7 @@ form p {
   text-align: center;
 }
 .option .delButton {
-  position: relative;
-  left: 38px;
+  float: left;
   top: -0.5px;
   margin-top: 4.5px;
   border: none;

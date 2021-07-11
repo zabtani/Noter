@@ -77,3 +77,8 @@ p {
     width: 95%;
   }
 }
+@media (hover: none) {
+  .buttonsContainer button:hover {
+    background-color: transparent;
+  }
+}

@@ -73,12 +73,10 @@ p {
   line-break: anywhere;
 }
 @media (max-width: 768px) {
+  .buttonsContainer button:focus {
+    background-color: transparent;
+  }
   .task {
     width: 95%;
-  }
-}
-@media (hover: none) {
-  .buttonsContainer button:hover {
-    background-color: transparent;
   }
 }

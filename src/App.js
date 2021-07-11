@@ -15,20 +15,13 @@ const App = () => {
       window.removeEventListener('beforeunload', saveToLocalStorage);
     };
   }, []);
-  const labelColors = [
-    '#0000003b',
-    '#04f43f3b',
-    '#f4041e3b',
-    '#e804f43b',
-    '#ffeb003b',
-    '#042df43b',
-  ];
+
   return (
     <div className={classes.app}>
       <Header title="Noter" />
       <TasksProvider>
         <main>
-          <TaskGenerator labelColors={labelColors} />
+          <TaskGenerator />
           <Lists />
         </main>
       </TasksProvider>

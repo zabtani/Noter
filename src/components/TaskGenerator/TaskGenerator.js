@@ -40,6 +40,14 @@ const genReducer = (state, action) => {
   }
 };
 const TaskGenerator = (props) => {
+  const labelColors = [
+    { hex: '#0000003b', colorName: 'Grey' },
+    { hex: '#04f43f3b', colorName: 'Green' },
+    { hex: '#f4041e3b', colorName: 'Red' },
+    { hex: '#e804f43b', colorName: 'Pink' },
+    { hex: '#ffeb003b', colorName: 'Yellow' },
+    { hex: '#042df43b', colorName: 'Blue' },
+  ];
   const [genState, dispatchGenAction] = useReducer(genReducer, defaultGenState);
   const tasksCtx = useContext(TasksContext);
   console.log(tasksCtx);
@@ -85,7 +93,7 @@ const TaskGenerator = (props) => {
       {!genState.mainFormView && (
         <LabelForm
           onError={onErroHandler}
-          labelColors={props.labelColors}
+          labelColors={labelColors}
           onAddNewLabel={onAddNewLabelHandler}
           toggleView={switchToTaskFormHandler}
         />

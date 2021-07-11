@@ -14,7 +14,7 @@ form {
   list-style: none;
   padding: 0;
   text-align: center;
-  height: 35vh;
+  height: fit-content;
   overflow-y: auto;
 }
 

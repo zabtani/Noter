@@ -24,23 +24,24 @@ const TaskForm = (props) => {
     setChosenColor(color);
   };
   const colorOptions = props.labelColors.map((color) => {
-    const isChosen = chosenColor === color;
+    const isChosen = chosenColor === color.hex;
     return (
       <OptionButton
         chosen={isChosen}
-        key={color.replace('#', '')}
-        color={color}
-        title={color}
+        key={color.hex.replace('#', '')}
+        color={color.hex}
+        title={color.colorName}
         type="button"
-        value={color}
+        value={color.hex}
         label="Description"
-        onClick={chooseColorHandler.bind(null, color)}
+        onClick={chooseColorHandler.bind(null, color.hex)}
       />
     );
   });
   return (
     <>
       <form autoComplete="off" onSubmit={addNewLabelHandler}>
+        <p>Choose a name then a color for this new label!</p>
         <Input label="Label name" ref={labelNameInput} />
         <ul className={classes.labelsList}>{colorOptions}</ul>
         <FormButton color="primary" type="submit" text="Add Label" />

@@ -5,9 +5,13 @@ const List = (props) => {
   const tasks = props.tasks.map((task) => <Task key={task.id} data={task} />);
   return (
     <Card
-      onExpand={props.onExpand}
-      className={props.expanded && classes.expanded}
-      expanded={props.expanded}
+      switchText={
+        props.toggleIconOn ? 'change to completed' : 'change to active'
+      }
+      onShow={props.onShow}
+      toggleIconOn={props.toggleIconOn}
+      className={classes.listCard}
+      active={props.active}
       title={props.title}
     >
       <div className={classes.tasksList}>

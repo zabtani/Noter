@@ -5,9 +5,10 @@
   display: flex;
 }
 .task {
-  margin-top: 0.6rem;
   border-radius: 0.5rem;
-  width: 100%;
+  width: 85%;
+  margin: auto;
+  margin-top: 0.6rem;
   overflow: hidden;
 }
 .topContainer {

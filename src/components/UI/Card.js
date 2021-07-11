@@ -1,18 +1,19 @@
 import classes from './Card.module.css';
-import ExpandIcon from './ExpandIcon';
-import MinimizeIcon from './MinimizeIcon';
+import MainOnIcon from './MainOnIcon';
+import MainOffIcon from './MainOffIcon';
 const Card = (props) => {
   return (
     <>
       <div className={`${classes.card} ${props.className}`}>
         <div className={classes.header}>
           <h2>{props.title}</h2>
-          {props.onExpand && (
-            <button type="button" onClick={props.onExpand}>
-              {props.expanded ? (
-                <MinimizeIcon className={classes.icon} width="25" height="25" />
+          {props.onShow && (
+            <button type="button" onClick={props.onShow}>
+              {props.switchText}
+              {props.toggleIconOn ? (
+                <MainOnIcon className={classes.icon} width="35" height="35" />
               ) : (
-                <ExpandIcon className={classes.icon} width="25" height="25" />
+                <MainOffIcon className={classes.icon} width="35" height="35" />
               )}
             </button>
           )}

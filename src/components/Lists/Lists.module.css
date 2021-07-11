@@ -4,8 +4,8 @@
   height: 81vh;
   padding: 0 0.4rem 0 0.4rem;
 }
-.expanded {
-  width: 50%;
+.listCard {
+  width: 65%;
 }
 /* width */
 ::-webkit-scrollbar {

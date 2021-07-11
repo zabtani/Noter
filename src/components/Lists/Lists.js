@@ -4,34 +4,38 @@ import { useContext, useState } from 'react';
 const Lists = () => {
   const { tasks } = useContext(TasksContext);
   const [listViewState, setListViewState] = useState({
-    isActiveExpanded: true,
-    isCompletedExpanded: false,
+    isActiveShown: true,
+    isCompletedShown: false,
   });
   const activeTasks = tasks.filter((task) => task.active === true);
   const completedTasks = tasks.filter((task) => task.active !== true);
-  const expandHandler = () => {
+  const showHandler = () => {
     setListViewState((state) => {
       return {
-        isActiveExpanded: !state.isActiveExpanded,
-        isCompletedExpanded: !state.isCompletedExpanded,
+        isActiveShown: !state.isActiveShown,
+        isCompletedShown: !state.isCompletedShown,
       };
     });
   };
 
   return (
     <>
-      <List
-        onExpand={expandHandler}
-        expanded={listViewState.isActiveExpanded}
-        tasks={activeTasks}
-        title="Active"
-      />
-      <List
-        onExpand={expandHandler}
-        expanded={listViewState.isCompletedExpanded}
-        tasks={completedTasks}
-        title="Completed"
-      />
+      {listViewState.isActiveShown && (
+        <List
+          toggleIconOn={true}
+          onShow={showHandler}
+          tasks={activeTasks}
+          title="Active"
+        />
+      )}
+      {listViewState.isCompletedShown && (
+        <List
+          toggleIconOn={false}
+          onShow={showHandler}
+          tasks={completedTasks}
+          title="Completed"
+        />
+      )}
     </>
   );
 };

@@ -72,3 +72,8 @@ p {
 p {
   line-break: anywhere;
 }
+@media (max-width: 768px) {
+  .task {
+    width: 95%;
+  }
+}

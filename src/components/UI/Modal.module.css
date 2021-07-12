@@ -19,11 +19,17 @@
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
   z-index: 30;
   animation: slide-down 300ms ease-out forwards;
-  background: linear-gradient(#2622fc6b, rgb(253, 253, 253));
+  background: linear-gradient(rgb(253, 253, 253), #6c6ae7);
 }
 .modal p {
+  color: black;
   text-align: center;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
+}
+.buttonsContainer {
+  margin-top: 0.5rem;
+  display: flex;
+  justify-content: space-between;
 }
 @media (min-width: 768px) {
   .modal {

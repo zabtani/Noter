@@ -54,7 +54,10 @@
 p {
   padding: 0.4rem;
 }
-
+.modalTaskName {
+  vertical-align: baseline;
+  font-weight: bold;
+}
 .icon {
   margin-right: 0.3rem;
 }

@@ -10,25 +10,27 @@ const ModalOverlay = (props) => {
   return (
     <div className={classes.modal}>
       <p className={classes.content}>{props.children}</p>
-      <Button
-        variant="contained"
-        color="primary"
-        type="button"
-        onClick={props.onClose}
-      >
-        {props.buttonText}
-      </Button>
-
-      {props.onAction && (
+      <div className={classes.buttonsContainer}>
         <Button
           variant="contained"
           color="primary"
           type="button"
-          onClick={props.onAction}
+          onClick={props.onClose}
         >
-          approve
+          {props.buttonText}
         </Button>
-      )}
+
+        {props.onAction && (
+          <Button
+            variant="contained"
+            color="secondary"
+            type="button"
+            onClick={props.onAction}
+          >
+            approve
+          </Button>
+        )}
+      </div>
     </div>
   );
 };

@@ -41,7 +41,9 @@ const Task = (props) => {
           onClose={closeRemoveModalHandler}
           onAction={removeHandler.bind(null, props.data.id)}
         >
-          are you sure?
+          Sure you want to remove
+          <br />
+          <span className={classes.modalTaskName}>{props.data.name}</span> ?
         </Modal>
       )}
       <div className={classes.topContainer}>

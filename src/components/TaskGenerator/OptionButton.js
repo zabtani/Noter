@@ -2,11 +2,7 @@ import classes from './TaskGenerator.module.css';
 import LabelDeleteIcon from '../UI/Icons/LabelDeleteIcon';
 const OptionButton = (props) => {
   return (
-    <li
-      className={`${classes.option} ${props.chosen && classes.chosen} ${
-        !props.deleteOption && classes.default
-      }`}
-    >
+    <li className={`${classes.option} ${props.chosen && classes.chosen}  `}>
       {props.deleteOption && props.chosen && (
         <button
           type="button"

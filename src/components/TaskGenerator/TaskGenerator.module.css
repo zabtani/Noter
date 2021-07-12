@@ -19,13 +19,11 @@ form p {
   align-items: center;
   list-style: none;
   padding: 0;
+  margin: 0;
+  width: 100%;
   text-align: center;
   height: fit-content;
   overflow: hidden;
-
-  padding: 0.2rem;
-  width: 100%;
-  margin: auto;
 }
 
 .option .labelButton {
@@ -38,30 +36,25 @@ form p {
   text-align: center;
 }
 .option .delButton {
-  float: left;
-  top: -0.5px;
-  margin-top: 4.5px;
   border: none;
   background-color: transparent;
   width: fit-content !important;
+}
+.option.chosen .delButton {
+  margin-left: -35px;
 }
 .option {
   transition: width 0.5s;
   width: 65%;
 }
-.option.chosen .icon {
-  margin-bottom: 13%;
-  vertical-align: middle;
-}
+
 .option.chosen {
   width: 85%;
-  display: flex;
-  margin-right: 35px;
+}
+.option.chosen .icon {
+  vertical-align: middle;
+  margin-bottom: 7.5px;
 }
 .option.chosen button {
   font-weight: bolder;
-  width: 85%;
-}
-.default.option.chosen {
-  margin-left: 8%;
 }

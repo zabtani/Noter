@@ -29,11 +29,12 @@ function tasksReducer(state, action) {
       };
     case 'ADD':
       const task = action.value;
+
       return {
         ...state,
         tasks: [
-          ...updatedTasks,
           { ...task, active: true, date: creationDate() },
+          ...updatedTasks,
         ],
       };
     case 'MOVE':
@@ -67,6 +68,7 @@ export const TasksProvider = (props) => {
   );
   const { tasks } = tasksState;
   const { labels } = tasksState;
+
   useEffect(() => {
     localStorage.setItem('tasks', JSON.stringify(tasks));
     localStorage.setItem('labels', JSON.stringify(labels));

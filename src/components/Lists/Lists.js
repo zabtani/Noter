@@ -1,40 +1,46 @@
 import List from './List';
 import TasksContext from '../../store/tasks-context';
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
 const Lists = () => {
   const { tasks } = useContext(TasksContext);
   const { labels } = useContext(TasksContext);
-  const [listViewState, setListViewState] = useState({
-    isActiveShown: true,
-    isCompletedShown: false,
+  const [viewState, setViewState] = useState({
+    active: true,
+    completed: false,
   });
+  useEffect(() => {
+    setViewState({ active: true, completed: false });
+  }, [tasks]);
+
   const activeTasks = tasks.filter((task) => task.active === true);
   const completedTasks = tasks.filter((task) => task.active !== true);
 
-  const showHandler = () => {
-    setListViewState((state) => {
+  const toggleViewHandler = () => {
+    setViewState((state) => {
       return {
-        isActiveShown: !state.isActiveShown,
-        isCompletedShown: !state.isCompletedShown,
+        active: !state.active,
+        completed: !state.completed,
       };
     });
   };
 
   return (
     <>
-      {listViewState.isActiveShown && (
+      {viewState.active && (
         <List
+          main={true}
           labels={labels}
           toggleIconOn={true}
-          onShow={showHandler}
+          onShow={toggleViewHandler}
           tasks={activeTasks}
           title="Active"
         />
       )}
-      {listViewState.isCompletedShown && (
+      {viewState.completed && (
         <List
+          main={false}
           toggleIconOn={false}
-          onShow={showHandler}
+          onShow={toggleViewHandler}
           tasks={completedTasks}
           title="Completed"
         />

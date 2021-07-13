@@ -24,6 +24,7 @@ const Task = (props) => {
   const closeRemoveModalHandler = () => {
     setShowRemoveModal(false);
   };
+
   return (
     <div
       className={

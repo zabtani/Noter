@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.css": "/Noter/static/css/main.f860e1c8.chunk.css",
-    "main.js": "/Noter/static/js/main.353c7c78.chunk.js",
-    "main.js.map": "/Noter/static/js/main.353c7c78.chunk.js.map",
+    "main.css": "/Noter/static/css/main.94f77e24.chunk.css",
+    "main.js": "/Noter/static/js/main.f3588fa1.chunk.js",
+    "main.js.map": "/Noter/static/js/main.f3588fa1.chunk.js.map",
     "runtime-main.js": "/Noter/static/js/runtime-main.b066679f.js",
     "runtime-main.js.map": "/Noter/static/js/runtime-main.b066679f.js.map",
-    "static/js/2.4a5c9f26.chunk.js": "/Noter/static/js/2.4a5c9f26.chunk.js",
-    "static/js/2.4a5c9f26.chunk.js.map": "/Noter/static/js/2.4a5c9f26.chunk.js.map",
+    "static/js/2.2aca967b.chunk.js": "/Noter/static/js/2.2aca967b.chunk.js",
+    "static/js/2.2aca967b.chunk.js.map": "/Noter/static/js/2.2aca967b.chunk.js.map",
     "static/js/3.7634cc12.chunk.js": "/Noter/static/js/3.7634cc12.chunk.js",
     "static/js/3.7634cc12.chunk.js.map": "/Noter/static/js/3.7634cc12.chunk.js.map",
     "index.html": "/Noter/index.html",
-    "static/css/main.f860e1c8.chunk.css.map": "/Noter/static/css/main.f860e1c8.chunk.css.map",
-    "static/js/2.4a5c9f26.chunk.js.LICENSE.txt": "/Noter/static/js/2.4a5c9f26.chunk.js.LICENSE.txt"
+    "static/css/main.94f77e24.chunk.css.map": "/Noter/static/css/main.94f77e24.chunk.css.map",
+    "static/js/2.2aca967b.chunk.js.LICENSE.txt": "/Noter/static/js/2.2aca967b.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.b066679f.js",
-    "static/js/2.4a5c9f26.chunk.js",
-    "static/css/main.f860e1c8.chunk.css",
-    "static/js/main.353c7c78.chunk.js"
+    "static/js/2.2aca967b.chunk.js",
+    "static/css/main.94f77e24.chunk.css",
+    "static/js/main.f3588fa1.chunk.js"
   ]
 }

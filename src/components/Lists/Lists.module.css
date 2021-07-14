@@ -4,9 +4,11 @@
   height: 81vh;
   padding: 0 0.4rem 0 0.4rem;
 }
+
 .listCard {
   width: 65%;
 }
+
 .filterOption {
   margin: 3%;
   font-size: 2.5rem;
@@ -19,6 +21,8 @@
 }
 .filterOptionsList {
   list-style: none;
+  height: 81vh;
+
   margin: auto;
   padding: 0;
   width: 50%;

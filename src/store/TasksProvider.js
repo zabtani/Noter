@@ -44,10 +44,12 @@ function tasksReducer(state, action) {
       );
       const movedTask = updatedTasks[movedTaskIdx];
       const updatedTask = { ...movedTask, active: !movedTask.active };
-      updatedTasks[movedTaskIdx] = updatedTask;
       return {
         ...state,
-        tasks: [...updatedTasks],
+        tasks: [
+          updatedTask,
+          ...updatedTasks.filter((task) => task.id !== movedTaskId),
+        ],
       };
 
     case 'REMOVE':

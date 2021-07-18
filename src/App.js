@@ -1,11 +1,13 @@
-import { useEffect } from 'react';
+import { useState } from 'react';
 import classes from './App.module.css';
 import Header from './components/Layout/Header';
 import Footer from './components/Layout/Footer';
 import TaskGenerator from './components/TaskGenerator/TaskGenerator';
-import Lists from './components/Lists/Lists';
+import List from './components/Lists/List';
 import { TasksProvider } from './store/TasksProvider';
+import Modal from './components/UI/Modal';
 const App = () => {
+  const [showIntroModal, setShowIntroModal] = useState(true);
   const labelColors = [
     { hex: '#0000003b', colorName: 'Grey' },
     { hex: '#04f43f3b', colorName: 'Green' },
@@ -14,23 +16,25 @@ const App = () => {
     { hex: '#ffeb003b', colorName: 'Yellow' },
     { hex: '#042df43b', colorName: 'Blue' },
   ];
-  useEffect(() => {
-    const saveToLocalStorage = () => {
-      localStorage.setItem('dodo', 'drerei');
-    };
-    window.addEventListener('beforeunload', saveToLocalStorage);
-    return () => {
-      window.removeEventListener('beforeunload', saveToLocalStorage);
-    };
-  }, []);
 
   return (
     <div className={classes.app}>
+      {showIntroModal && (
+        <Modal
+          buttonText="Go To App"
+          onClose={() => {
+            console.log('...');
+            setShowIntroModal(false);
+          }}
+        >
+          welcome!
+        </Modal>
+      )}
       <Header title="Noter" />
       <TasksProvider>
         <main>
           <TaskGenerator labelColors={labelColors} />
-          <Lists />
+          <List />
         </main>
       </TasksProvider>
       <Footer />

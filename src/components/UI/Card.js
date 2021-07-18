@@ -7,9 +7,8 @@ const Card = (props) => {
       <div className={`${classes.card} ${props.className}`}>
         <div className={classes.header}>
           <h2>{props.title}</h2>
-
-          {props.onShow && (
-            <button type="button" onClick={props.onShow}>
+          {props.onSwitch && (
+            <button type="button" onClick={props.onSwitch}>
               {props.switchText}
               {props.toggleIconOn ? (
                 <MainOnIcon className={classes.icon} width="35" height="35" />

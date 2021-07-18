@@ -57,7 +57,10 @@ const TaskGenerator = (props) => {
     dispatchGenAction({ type: 'CHOOSE_LABEL', value: updatedNewLabel });
     tasksCtx.addLabel(updatedNewLabel);
   };
-  const onDeleteLabelHandler = () => {
+  const chooseLabelHandler = (label) => {
+    dispatchGenAction({ type: 'CHOOSE_LABEL', value: label });
+  };
+  const chooseDefaultLabelHandler = () => {
     dispatchGenAction({ type: 'CHOOSE_LABEL', value: defaultLabel });
   };
   const switchToTaskFormHandler = () => {
@@ -86,9 +89,10 @@ const TaskGenerator = (props) => {
           lastInputsData={
             genState.currentInputsData && genState.currentInputsData
           }
-          chosenLabel={genState.chosenLabel}
           onAddNewTask={onAddNewTaskHandler}
-          onDeleteLabel={onDeleteLabelHandler}
+          chosenLabel={genState.chosenLabel}
+          chooseDefaultLabel={chooseDefaultLabelHandler}
+          chooseLabel={chooseLabelHandler}
           toggleView={switchToLabelFormHandler}
           labels={tasksCtx.labels}
         />

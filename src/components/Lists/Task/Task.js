@@ -25,7 +25,7 @@ const Task = (props) => {
     setShowRemoveModal(false);
   };
   return (
-    <div
+    <li
       className={
         props.data.active
           ? classes.task
@@ -78,7 +78,7 @@ const Task = (props) => {
           </button>
         )}
       </div>
-    </div>
+    </li>
   );
 };
 export default Task;

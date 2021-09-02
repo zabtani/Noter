@@ -27,7 +27,7 @@ const App = () => {
             setShowIntroModal(false);
           }}
         >
-          welcome!
+          Welcome to Noter!
         </Modal>
       )}
       <Header title="Noter" />

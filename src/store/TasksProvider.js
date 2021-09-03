@@ -6,8 +6,6 @@ const savedLabels = localStorage.getItem('labels');
 const defaultTasksState = {
   chosenList: 'active',
   tasks: savedTasks ? JSON.parse(savedTasks) : [],
-  filter: null,
-  filterMenu: false,
   labels: savedLabels
     ? JSON.parse(savedLabels)
     : [{ id: 'def', name: 'General', color: '#0000003b' }],
@@ -15,17 +13,6 @@ const defaultTasksState = {
 function tasksReducer(state, action) {
   let updatedTasks = [...state.tasks];
   switch (action.type) {
-    case 'TOGGLE_FILTER_MENU':
-      return {
-        ...state,
-        filterMenu: !state.filterMenu,
-      };
-    case 'FILTER_LIST':
-      const filter = !action.value ? false : action.value;
-      return {
-        ...state,
-        filter: filter,
-      };
     case 'SWITCH_LIST':
       const chosenList = state.chosenList === 'active' ? 'completed' : 'active';
       return {
@@ -55,7 +42,17 @@ function tasksReducer(state, action) {
           { ...task, active: true, date: creationDate() },
           ...updatedTasks,
         ],
-        filter: false,
+      };
+    case 'UPDATE':
+      const editedTaskId = action.value.id;
+
+      const editedTask = action.value;
+      return {
+        ...state,
+        tasks: [
+          editedTask,
+          ...updatedTasks.filter((task) => task.id !== editedTaskId),
+        ],
       };
     case 'MOVE':
       const movedTaskId = action.value;
@@ -89,24 +86,10 @@ export const TasksProvider = (props) => {
     tasksReducer,
     defaultTasksState
   );
-  const { tasks, labels, chosenList, filter, filterMenu } = tasksState;
-
-  let listTasks = null;
-  let filteredTasks = null;
-  if (chosenList === 'active') {
-    listTasks = tasks.filter((task) => task.active === true);
-  } else if (chosenList === 'completed') {
-    listTasks = tasks.filter((task) => task.active !== true);
-  }
-  if (filter) {
-    filteredTasks = listTasks.filter((task) => task.label.id === filter);
-    if (filteredTasks.length === 0) {
-      dispatchTasksAction({ type: 'FILTER_LIST', value: false });
-    }
-  }
-  const filterOptions = listTasks
-    .map((task) => task.label)
-    .filter((v, i, a) => a.findIndex((t) => t.id === v.id) === i);
+  const { tasks, labels, chosenList } = tasksState;
+  const listTasks = tasks.filter((task) =>
+    chosenList === 'active' ? task.active === true : task.active !== true
+  );
 
   useEffect(() => {
     localStorage.setItem('tasks', JSON.stringify(tasks));
@@ -118,9 +101,6 @@ export const TasksProvider = (props) => {
   };
   const addHandler = (task) => {
     chosenList === 'completed' && switchListHandler();
-    if (filterMenu) {
-      toggleFilterMenu();
-    }
     dispatchTasksAction({ type: 'ADD', value: task });
   };
   const moveHandler = (id) => {
@@ -129,21 +109,19 @@ export const TasksProvider = (props) => {
   const removeHandler = (id) => {
     dispatchTasksAction({ type: 'REMOVE', value: id });
   };
+  const updateHandler = (updatedTask) => {
+    dispatchTasksAction({ type: 'UPDATE', value: updatedTask });
+  };
   const deleteLabelHandler = (id) => {
     dispatchTasksAction({ type: 'DELETELABEL', value: id });
   };
   const switchListHandler = () => {
     dispatchTasksAction({ type: 'SWITCH_LIST' });
   };
-  const filterListHandler = (labelId) => {
-    dispatchTasksAction({ type: 'FILTER_LIST', value: labelId });
-  };
-  const toggleFilterMenu = () => {
-    dispatchTasksAction({ type: 'TOGGLE_FILTER_MENU' });
-  };
 
   const tasksContext = {
-    tasks: filter ? filteredTasks : listTasks,
+    allTasks: tasks,
+    tasks: listTasks,
     chosenList: chosenList,
     labels: labels,
     addLabel: addLabelHandler,
@@ -151,14 +129,8 @@ export const TasksProvider = (props) => {
     add: addHandler,
     move: moveHandler,
     remove: removeHandler,
+    update: updateHandler,
     switchList: switchListHandler,
-    filter: {
-      isOn: filter,
-      menuIsOpen: filterMenu,
-      options: filterOptions,
-      toggleMenu: toggleFilterMenu,
-      byLabel: filterListHandler,
-    },
   };
 
   return (

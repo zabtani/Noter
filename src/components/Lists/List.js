@@ -1,30 +1,66 @@
 import Card from '../UI/Card';
 import classes from './Lists.module.css';
-import { useMemo, useContext, useEffect, useRef, useState } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
 import TasksContext from '../../store/tasks-context';
 import Filter from './Filter';
 import ListTasks from './ListTasks';
+const initialFilterState = {
+  filterMenuIsOpen: false,
+  filterIsOn: false,
+};
 const List = () => {
-  const { filter, chosenList, switchList, tasks } = useContext(TasksContext);
+  const { chosenList, switchList, tasks } = useContext(TasksContext);
+  const [currentTasks, setCurrentTasks] = useState(tasks);
+  const [filterState, setFilterState] = useState(initialFilterState);
   const listsRef = useRef();
   const isActive = chosenList === 'active' ? true : false;
   const switchText = isActive ? 'change to completed' : 'change to active';
-  const [t, setT] = useState(tasks);
+  const listTitle = `${
+    chosenList[0].toUpperCase() + chosenList.slice(1, chosenList.length)
+  } Notes (${tasks.length})`;
+  const listLabels = tasks
+    .map((task) => task.label)
+    .filter((v, i, a) => a.findIndex((t) => t.id === v.id) === i);
+  const filterControlsShown = listLabels.length > 1;
   useEffect(() => {
-    const listRe = listsRef;
+    setFilterState(initialFilterState);
+    setCurrentTasks(tasks);
+    const ref = listsRef;
     return () => {
-      listRe.current.scrollIntoView();
+      ref.current.scrollIntoView();
     };
-  }, [tasks.length]);
-  useEffect(() => {
-    setT(tasks);
   }, [tasks]);
-
-  const onSwitchHandler = () => {
-    switchList();
-    filter.byLabel(false);
+  const filterHandler = (option) => {
+    toggleFilterMenuHandler();
+    const filteredTasks = tasks.filter((task) => task.label.id === option);
+    setCurrentTasks(filteredTasks);
+    changeFilterStatus(true);
   };
-
+  const onSwitchHandler = () => {
+    if (filterState.filterIsOn) changeFilterStatus(false);
+    if (filterState.filterMenuIsOpen) toggleFilterMenuHandler();
+    switchList();
+  };
+  const cancelFilterHandler = () => {
+    changeFilterStatus(false);
+    setCurrentTasks(tasks);
+  };
+  const changeFilterStatus = (status) => {
+    setFilterState((prevState) => {
+      return {
+        ...prevState,
+        filterIsOn: status,
+      };
+    });
+  };
+  const toggleFilterMenuHandler = () => {
+    setFilterState((prevState) => {
+      return {
+        ...prevState,
+        filterMenuIsOpen: !prevState.filterMenuIsOpen,
+      };
+    });
+  };
   return (
     <>
       <div ref={listsRef}></div>
@@ -32,11 +68,20 @@ const List = () => {
         switchText={switchText}
         onSwitch={onSwitchHandler}
         toggleIconOn={isActive}
-        title={chosenList}
+        title={listTitle}
         className={classes.listCard}
       >
-        <Filter isVisible={tasks.length > 0} />
-        <ListTasks tasks={useMemo(() => t, [t])} />
+        {filterControlsShown && (
+          <Filter
+            isOn={filterState.filterIsOn}
+            onToggleMenu={toggleFilterMenuHandler}
+            onFilter={filterHandler}
+            onCancel={cancelFilterHandler}
+            menuIsOpen={filterState.filterMenuIsOpen}
+            options={listLabels}
+          />
+        )}
+        {!filterState.filterMenuIsOpen && <ListTasks tasks={currentTasks} />}
       </Card>
     </>
   );

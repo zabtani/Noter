@@ -22,9 +22,18 @@
   background: linear-gradient(rgb(253, 253, 253), #6c6ae7);
 }
 .modal p {
+  line-break: strict;
   color: black;
-  text-align: center;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
+}
+.modal ul {
+  padding: 0 5% 0 0;
+  margin: 0;
+}
+.modal ul li {
+  width: 95%;
+  margin: 2% 0 0 0;
+  padding: 5%;
 }
 .buttonsContainer {
   margin-top: 0.5rem;

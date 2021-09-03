@@ -8,7 +8,7 @@ const Backdrop = (props) => {
 const ModalOverlay = (props) => {
   return (
     <div className={classes.modal}>
-      <p className={classes.content}>{props.children}</p>
+      <div className={classes.content}>{props.children}</div>
       <div className={classes.buttonsContainer}>
         <Button
           variant="contained"
@@ -22,7 +22,7 @@ const ModalOverlay = (props) => {
         {props.onAction && (
           <Button
             variant="contained"
-            color="secondary"
+            color={props.color}
             type="button"
             onClick={props.onAction}
           >
@@ -43,6 +43,7 @@ const Modal = (props) => {
       )}
       {ReactDOM.createPortal(
         <ModalOverlay
+          color={props.color ? props.color : 'secondary'}
           buttonText={props.buttonText}
           onClose={props.onClose}
           onAction={props.onAction}

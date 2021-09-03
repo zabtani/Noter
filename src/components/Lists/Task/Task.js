@@ -2,18 +2,24 @@ import classes from './Task.module.css';
 import CheckIcon from '../../UI/Icons/CheckIcon';
 import InfoIcon from '../../UI/Icons/InfoIcon';
 import DeleteIcon from '../../UI/Icons/DeleteIcon';
+import EditIcon from '../../UI/Icons/EditIcon';
 import { useContext, useState } from 'react';
 import TasksContext from '../../../store/tasks-context';
 import Modal from '../../UI/Modal';
+import TaskEditor from './TaskEditor';
 const Task = (props) => {
   const [showDescription, setShowDescription] = useState(false);
   const [showRemoveModal, setShowRemoveModal] = useState(false);
+  const [showTaskEditor, setShowTaskEditor] = useState(false);
   const tasksCtx = useContext(TasksContext);
   const toggleDescriptionHandler = () => {
     setShowDescription(!showDescription);
   };
   const showRemoveHandler = (id) => {
     setShowRemoveModal(true);
+  };
+  const toggleEditHandler = () => {
+    setShowTaskEditor((prevState) => !prevState);
   };
   const removeHandler = (id) => {
     tasksCtx.remove(id);
@@ -24,6 +30,10 @@ const Task = (props) => {
   const closeRemoveModalHandler = () => {
     setShowRemoveModal(false);
   };
+  const onEditActionHandler = (editedTask) => {
+    tasksCtx.update(editedTask);
+  };
+  const topConIconsProps = { width: 22, height: 22 };
   return (
     <li
       className={
@@ -46,11 +56,23 @@ const Task = (props) => {
           <span className={classes.modalTaskName}>{props.data.name}</span> ?
         </Modal>
       )}
+      {showTaskEditor && (
+        <TaskEditor
+          onAction={onEditActionHandler}
+          onClose={toggleEditHandler}
+          {...props}
+        />
+      )}
       <div className={classes.topContainer}>
         <div className={classes.date}>{props.data.date}</div>
-        <button type="button" onClick={showRemoveHandler}>
-          <DeleteIcon className={classes.deleteButton} width={19} height={19} />
-        </button>
+        <div className={classes.iconsCon}>
+          <button type="button" onClick={toggleEditHandler}>
+            <EditIcon className={classes.editButton} {...topConIconsProps} />
+          </button>
+          <button type="button" onClick={showRemoveHandler}>
+            <DeleteIcon className={classes.delButton} {...topConIconsProps} />
+          </button>
+        </div>
       </div>
       <h2 className={classes.title}>{props.data.name}</h2>
       {props.data.description && showDescription && (
@@ -71,7 +93,7 @@ const Task = (props) => {
         </button>
         {props.data.description && (
           <button type="button" onClick={toggleDescriptionHandler}>
-            {showDescription ? 'Hide paragraph' : 'Info'}
+            {showDescription ? 'Hide' : 'Info'}
             <div className={classes.icon}>
               <InfoIcon width={25} height={25} />
             </div>

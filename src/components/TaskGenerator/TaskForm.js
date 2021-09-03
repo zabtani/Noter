@@ -18,7 +18,6 @@ const TaskForm = (props) => {
       props.onError('note name is too short');
       return;
     }
-
     props.onAddNewTask({
       name: name,
       description: description,

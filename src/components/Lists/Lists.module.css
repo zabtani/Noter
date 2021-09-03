@@ -18,7 +18,7 @@
   border: none;
   padding: 0;
   font-weight: bolder;
-  border-radius: 4rem 0.5rem 4rem 0.5rem;
+  border-radius: 1rem;
   width: 100%;
 }
 .filterOptionsList {

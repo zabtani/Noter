@@ -1,43 +1,42 @@
 import classes from './Lists.module.css';
 import Button from '../UI/Button';
-import { useContext } from 'react';
-import TasksContext from '../../store/tasks-context';
 
 const Filter = (props) => {
-  const { filter } = useContext(TasksContext);
   const optionFilterHandler = (optionId) => {
-    filter.byLabel(optionId);
-    filter.toggleMenu();
+    props.onFilter(optionId);
   };
-  const sortButtons = props.isVisible && (
+  const sortButtons = (
     <>
       <Button
         className={classes.actionButton}
         color="primary"
-        onClick={filter.toggleMenu}
+        onClick={() => {
+          props.onToggleMenu();
+        }}
         text={
-          filter.menuIsOpen
-            ? 'back to all'
-            : filter.isOn
-            ? 'choose another label'
-            : 'filter by colored label'
+          props.menuIsOpen
+            ? 'Go back'
+            : props.isOn
+            ? 'Change Filter'
+            : 'Filter Options'
         }
       />
-      {!filter.menuIsOpen && filter.isOn && (
+      {props.isOn && !props.menuIsOpen && (
         <Button
           className={classes.actionButton}
           color="secondary"
-          onClick={filter.byLabel.bind(false)}
-          text="cancel filter"
+          onClick={() => {
+            props.onCancel();
+          }}
+          text="Cancel Filter"
         />
       )}
     </>
   );
-
-  const listfilterOptions = filter.menuIsOpen && (
+  const options = (
     <ul className={classes.filterOptionsList}>
       <p>Please choose filter... </p>
-      {filter.options.map((option) => (
+      {props.options.map((option) => (
         <button
           type="button"
           title={option.name}
@@ -58,7 +57,7 @@ const Filter = (props) => {
   return (
     <>
       {sortButtons}
-      {listfilterOptions}
+      {props.menuIsOpen && options}
     </>
   );
 };

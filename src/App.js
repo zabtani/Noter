@@ -1,13 +1,11 @@
-import { useState } from 'react';
 import classes from './App.module.css';
 import Header from './components/Layout/Header';
 import Footer from './components/Layout/Footer';
 import TaskGenerator from './components/TaskGenerator/TaskGenerator';
 import List from './components/Lists/List';
 import { TasksProvider } from './store/TasksProvider';
-import Modal from './components/UI/Modal';
+import IntroModal from './components/IntroModal/IntroModal';
 const App = () => {
-  const [showIntroModal, setShowIntroModal] = useState(true);
   const labelColors = [
     { hex: '#0000003b', colorName: 'Grey' },
     { hex: '#04f43f3b', colorName: 'Green' },
@@ -19,25 +17,15 @@ const App = () => {
 
   return (
     <div className={classes.app}>
-      {showIntroModal && (
-        <Modal
-          buttonText="Go To App"
-          onClose={() => {
-            console.log('...');
-            setShowIntroModal(false);
-          }}
-        >
-          Welcome to Noter!
-        </Modal>
-      )}
       <Header title="Noter" />
       <TasksProvider>
+        <IntroModal />
         <main>
           <TaskGenerator labelColors={labelColors} />
           <List />
         </main>
+        <Footer />
       </TasksProvider>
-      <Footer />
     </div>
   );
 };

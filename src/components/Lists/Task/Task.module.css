@@ -11,9 +11,18 @@
   margin-top: 0.6rem;
   overflow: hidden;
 }
+.task input {
+  width: 100%;
+  outline: none;
+  background-color: transparent;
+  border: none;
+}
 .topContainer {
   display: flex;
   justify-content: space-between;
+}
+.topContainer .iconsCon {
+  display: flex;
 }
 .date {
   margin: 0.2rem;
@@ -51,7 +60,11 @@
   color: black;
   font-weight: bolder;
 }
-p {
+.description {
+  font-size: 100%;
+}
+p,
+.description {
   padding: 0.4rem;
 }
 .modalTaskName {
@@ -61,18 +74,27 @@ p {
 .icon {
   margin-right: 0.3rem;
 }
-.deleteButton:hover {
-  color: red;
+.delButton:hover,
+.editButton:hover {
   font-weight: bolder;
 }
+.delButton:hover {
+  color: red;
+}
+.editButton:hover {
+  color: goldenrod;
+}
 .label {
+  user-select: none;
+  -webkit-user-select: none;
   font-size: 0.8rem;
   padding: 0.2rem;
   margin: 0.3rem;
   width: fit-content;
   border-radius: 5px;
 }
-p {
+ul p {
+  height: 3.5%;
   line-break: anywhere;
 }
 @media (max-width: 768px) {

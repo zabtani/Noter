@@ -65,7 +65,7 @@ const IntroModal = () => {
           ''
         ) : (
           <Modal
-            color="default"
+            color="primary"
             buttonText="Nope, Fresh start"
             onClose={() => {
               setShowIntroModal(false);

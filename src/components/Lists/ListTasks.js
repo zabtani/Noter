@@ -4,10 +4,12 @@ import classes from './Lists.module.css';
 
 const ListTasks = (props) => {
   const { tasks } = props;
-  const v = tasks.map((task) => <Task key={task.id} data={task} />);
+  const listItemsTasks = tasks.map((task) => (
+    <Task key={task.id} data={task} />
+  ));
   return (
     <ul className={classes.tasksList}>
-      {v.length > 0 ? v : 'Nothing here yet...'}
+      {listItemsTasks.length > 0 ? listItemsTasks : 'Nothing here yet...'}
     </ul>
   );
 };

@@ -12,7 +12,7 @@ const ModalOverlay = (props) => {
       <div className={classes.buttonsContainer}>
         <Button
           variant="contained"
-          color="primary"
+          color="default"
           type="button"
           onClick={props.onClose}
         >

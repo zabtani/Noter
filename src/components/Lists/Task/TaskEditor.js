@@ -39,7 +39,7 @@ const TaskEditor = (props) => {
   };
   return (
     <Modal
-      color="default"
+      color="primary"
       buttonText="Dont save"
       onClose={() => {
         props.onClose();
